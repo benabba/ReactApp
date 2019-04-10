@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -60,23 +61,33 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => { // index numero de la boucle 
-            return <Person
+            return <ErrorBoundary key={person.id}> <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name} 
               age={person.age}
-              key={person.id}
+              //key={person.id}
               // Event contient lentre de linput 
-              changed={(event) => this.nameChangedHandler(event, person.id)} />
+              changed={(event) => this.nameChangedHandler(event, person.id)} /></ ErrorBoundary>
           })}
         </div>
       );
       style.backgroundColor = "Red"
     }
 
+        let classes = ['red', 'Blod'].join(' ');
+    const classes2 = [];
+    if (this.state.persons.length <=2 )
+    {classes.push('red');
+    }
+    if (this.state.persons.length <= 1)
+    {
+      classes.push('Blod');
+    }
+
     return (
       <div className="App">
         <h1>Hi Islam, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className ={classes} >This is really working!</p>
         <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Persons</button>
@@ -89,4 +100,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App; 
