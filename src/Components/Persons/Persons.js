@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+//import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Person from './Person/Person';
+import PropTypes from 'prop-types';
 
-
+ 
 class Persons extends Component {
 render() {
       return this.props.persons.map((person, index) => { // index numero de la boucle 
@@ -16,4 +17,10 @@ render() {
           } );
 }
 }
+
+Persons.PropTypes = {
+  name : PropTypes.string,
+  age: PropTypes.number,
+  };
+
 export default Persons;
